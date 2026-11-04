@@ -137,6 +137,18 @@ button{cursor:pointer;font-family:var(--fb);border:none;background:none}
 }
 .sec-desc{font-size:.93rem;color:var(--ink2);max-width:520px;margin-bottom:2.8rem;line-height:1.75}
 
+/* ── STORY SUMMARY ───────────────────────────── */
+.story{max-width:1000px;margin:0 auto;background:var(--surf);border:1px solid var(--bdr);
+  border-radius:var(--rl);padding:2.6rem 3rem;box-shadow:var(--sh-md)}
+.story p{font-size:.97rem;line-height:2;color:var(--ink);margin-bottom:1.25rem}
+.story p b{font-weight:700;color:var(--navy)}
+.story-opts{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:1.6rem 0 .4rem}
+.so{border-radius:var(--r);padding:1.2rem 1.4rem;font-size:.86rem;line-height:1.85;border:1px solid}
+.so span{display:block;font-size:.7rem;font-weight:700;letter-spacing:.14em;margin-bottom:.4rem}
+.so.a{background:var(--chbg);border-color:var(--chbd)} .so.a span{color:var(--challenge)}
+.so.b{background:var(--trbg);border-color:var(--trbd)} .so.b span{color:var(--turning)}
+@media(max-width:640px){.story{padding:1.8rem 1.4rem}.story-opts{grid-template-columns:1fr}}
+
 /* ── STATS STRIP ─────────────────────────────── */
 .stats-strip{
   display:grid;grid-template-columns:repeat(5,1fr);
@@ -541,6 +553,7 @@ footer{
 
 <!-- ──────────── STICKY NAV ──────────── -->
 <nav class="snav">
+  <button class="sn" onclick="goto('sec-summary')">故事摘要</button>
   <button class="sn" onclick="goto('sec-char')">人物關係</button>
   <button class="sn" onclick="goto('sec-timeline')">故事時間軸</button>
   <button class="sn" onclick="goto('sec-events')">故事四象限</button>
@@ -574,6 +587,35 @@ footer{
     </div>
   </div>
 </div>
+
+<!-- ──────────── SECTION 0: STORY SUMMARY ──────────── -->
+<section class="wrap" id="sec-summary">
+  <p class="sec-label">Chapter 00 · 導讀</p>
+  <h2 class="sec-title">故事摘要</h2>
+  <p class="sec-desc">還沒讀完全文？一頁篇幅帶你掌握 A Plus 的 48 小時決策困局——危機如何引爆、各方立場為何、以及橫在眼前的兩條路。</p>
+
+  <div class="story io-fade">
+    <p><b>楔子</b>：數位媒體代理商 A Plus 營收五年成長至破億，但主打「全自動生成與投放」的低價 AI MarTech 興起，占營收三成的中小客戶轉向每月 99 美元的 O 平台——上月已流失 3 家。去中介化浪潮正式拍上門。</p>
+    <p><b>震撼彈</b>：週一清晨，執行長王愛玫收到長期客戶雅斯比來函，要求明年服務費降價 20%。客戶直言：企業用生成式 AI 幾秒就能完成基礎媒體操作，代理商的顧問價值何在？</p>
+    <p><b>路線之爭</b>：主管會議三方交鋒——蘇霏主張全面擁抱 AI，用 vibe coding 自建全自動投放系統；周雪莉痛斥這是跳入商品化陷阱，70% 營收來自重視人類判斷的金融大客戶；李廉安算出殘酷成本：第一年基建 800～1,000 萬、月燒 50 萬，金融數據混入訓練池，一次外洩就足以破產。會議不歡而散。</p>
+    <p><b>資本算盤</b>：最大股東創鼎資本林本恩下達通牒——下週董事會要看到「估值翻倍的 AI 轉型計畫」：代理商本益比僅 8～12 倍，SaaS 是 30 倍以上；若不從，反對所有擴張預算，甚至啟動退場條款。</p>
+    <p><b>客戶兩極</b>：環球金控來函要求簽署《AI 查核與無限期賠償附約》——人類審核軌跡、無上限懲罰性賠償、嚴禁客戶數據用於訓練模型。同天蘇霏提出 vibe coding 藍圖，但 10 個客戶 API 加人事一季燒 200 萬、3 人小組招募長達半年，根本等不到上線。</p>
+    <p><b>十字路口</b>：週五晚間 7 點，距董事會不到 48 小時。王愛玫在白板上畫下一條直線——</p>
+    <div class="story-opts">
+      <div class="so a">
+        <span>選項一 · 全面擁抱 AI</span>
+        轉型 SaaS 訂閱制：迎合股東與高估值，但面臨千萬研發錢坑，與失去金融大客戶的風險。
+      </div>
+      <div class="so b">
+        <span>選項二 · 借力使力</span>
+        深化顧問價值：守住金融大客戶與穩定獲利，但眼睜睜看 30% 中小客戶流失、承受股東撤資威脅。
+      </div>
+    </div>
+    <p style="margin:1.6rem 0 0">她該走向何方？——這不只是 A Plus 的難題，也是 AI 浪潮下知識價值產業經營者的共同考題。</p>
+  </div>
+</section>
+
+<div class="sep"></div>
 
 <!-- ──────────── SECTION 1: CHARACTER MAP ──────────── -->
 <section class="wrap" id="sec-char">
@@ -1568,7 +1610,7 @@ function goto(id) {
 }
 
 /* ─── Scroll-aware nav highlight ─── */
-const secIds = ['sec-char', 'sec-timeline', 'sec-events', 'sec-decision', 'sec-slido', 'sec-expert'];
+const secIds = ['sec-summary', 'sec-char', 'sec-timeline', 'sec-events', 'sec-decision', 'sec-slido', 'sec-expert'];
 const navBtns = document.querySelectorAll('.sn');
 window.addEventListener('scroll', () => {
   let cur = '';
