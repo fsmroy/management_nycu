@@ -527,6 +527,16 @@ footer{
 }
 .io-fade.vis{opacity:1;transform:none}
 
+/* ── GAME QR (story summary) ────────────────── */
+.game-qr{display:flex;align-items:center;gap:1.4rem;max-width:1000px;margin:1.8rem auto 0;background:var(--surf);border:1px solid var(--bdr);border-radius:var(--r);padding:1.2rem 1.6rem;box-shadow:var(--sh-sm)}
+.game-qr img{background:#fff;border:1px solid var(--bdr);border-radius:var(--r);padding:.55rem;flex-shrink:0}
+.game-qr h3{font-family:var(--fd);font-size:1.15rem;letter-spacing:-.01em;margin:0 0 .3rem}
+.game-qr p{font-size:.86rem;color:var(--ink2);margin:0;line-height:1.8}
+.game-qr .gq-link{font-size:.74rem;color:var(--ink3);letter-spacing:.01em;word-break:break-all}
+.game-qr a{color:var(--navy);font-weight:600;text-decoration:none}
+.game-qr a:hover{text-decoration:underline}
+@media(max-width:640px){.game-qr{flex-direction:column;text-align:center}}
+
 /* ── SLIDO SECTION ───────────────────────────── */
 .slido-intro{display:flex;align-items:center;gap:1.4rem;margin-bottom:1.6rem}
 .slido-qr{background:var(--surf);border:1px solid var(--bdr);border-radius:var(--r);padding:.55rem;box-shadow:var(--sh-sm);flex-shrink:0}
@@ -612,6 +622,15 @@ footer{
       </div>
     </div>
     <p style="margin:1.6rem 0 0">她該走向何方？——這不只是 A Plus 的難題，也是 AI 浪潮下知識價值產業經營者的共同考題。</p>
+  </div>
+
+  <div class="game-qr io-fade">
+    <img src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&margin=0&data=https%3A%2F%2Ffsmroy.github.io%2Fmanagement_nycu%2Fgame2.html" alt="互動決策遊戲 QR Code" width="132" height="132">
+    <div>
+      <h3>📱 掃描體驗互動決策遊戲</h3>
+      <p>用手機相機掃描左側 QR Code，親自扮演執行長王愛玫，在 48 小時內做出你的策略抉擇。</p>
+      <p class="gq-link">或以電腦開啟：<a href="https://fsmroy.github.io/management_nycu/game2.html" target="_blank" rel="noopener">fsmroy.github.io/management_nycu/game2.html</a></p>
+    </div>
   </div>
 </section>
 
