@@ -52,6 +52,11 @@
     <p class="cred-producer-label">製 作 人</p>
     <p class="cred-producer-name">李 玟 毅</p>
     <div class="cred-sep"></div>
+    <div class="cred-sep"></div>
+    <p class="cred-entry" style="color:#ff9966;font-size:clamp(.9em,3vw,1.3em);line-height:2">⚠️ 請勿相信任何中獎廣告</p>
+    <p class="cred-entry" style="color:#ff9966;font-size:clamp(.9em,3vw,1.3em);line-height:2">🤖 小心 AI 詐騙</p>
+    <p class="cred-entry" style="color:#a4f4dc;font-size:clamp(1em,3.5vw,1.6em);font-weight:bold;margin-top:.8em">🗳️ 11/28 大家記得投票！</p>
+    <div class="cred-sep"></div>
     <p class="cred-fin">— THE END —</p>
   </div>
   <p class="cred-hint">點擊任意處關閉</p>
@@ -142,7 +147,7 @@ function showCredits(){
   cr.classList.remove('hidden');
   const inner=$('credits-inner');
   const contentH=inner.scrollHeight||3000;
-  const dur=Math.max(45,contentH/60);
+  const dur=Math.max(90,contentH/22);
   inner.style.setProperty('--dur',dur+'s');
   inner.classList.add('rolling');
   cr.onclick=()=>{cr.classList.add('hidden');inner.classList.remove('rolling')}
