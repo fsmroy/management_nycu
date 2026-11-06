@@ -561,6 +561,20 @@ footer{
 .slido-intro p{font-size:.88rem;color:var(--ink2);max-width:480px}
 .slido-box{background:var(--surf);border:1px solid var(--bdr);border-radius:var(--rl);overflow:hidden;box-shadow:var(--sh-md);height:620px}
 .slido-box iframe{display:block;width:100%;height:100%;border:0}
+
+/* ── EPILOGUE ────────────────────────────────── */
+.ep-quote{max-width:780px;margin:0 auto 2.6rem;text-align:center}
+.ep-quote p{font-family:var(--fd);font-size:clamp(1.3rem,2.6vw,1.85rem);line-height:1.6;letter-spacing:-.01em;color:var(--navy)}
+.ep-quote p em{font-style:italic;color:var(--amber)}
+.ep-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin-bottom:2.4rem}
+@media(max-width:880px){.ep-grid{grid-template-columns:1fr}}
+.ep-item{background:var(--surf);border:1px solid var(--bdr);border-radius:var(--r);padding:1.6rem;box-shadow:var(--sh-sm);border-top:3px solid var(--amber)}
+.ep-num{font-family:var(--fd);font-size:1rem;color:var(--amber);margin-bottom:.5rem;letter-spacing:.04em}
+.ep-item h4{font-size:.95rem;font-weight:600;margin-bottom:.55rem;line-height:1.45}
+.ep-item p{font-size:.84rem;color:var(--ink2);line-height:1.78}
+.ep-close{max-width:780px;margin:0 auto;background:var(--bg2);border:1px solid var(--bdr);border-radius:var(--rl);padding:1.9rem 2.2rem;text-align:center}
+.ep-close p{font-size:.92rem;line-height:2;color:var(--ink)}
+.ep-close b{color:var(--navy)}
 </style>
 </head>
 <body>
@@ -591,6 +605,7 @@ footer{
   <button class="sn" onclick="goto('sec-decision')">路徑決策</button>
   <button class="sn" onclick="goto('sec-slido')">Slido 互動</button>
   <button class="sn" onclick="goto('sec-expert')">顧問分鏡</button>
+  <button class="sn" onclick="goto('sec-conclusion')">結語</button>
 </nav>
 
 <!-- ──────────── STATS ──────────── -->
@@ -1521,6 +1536,40 @@ footer{
   </div>
 </section>
 
+<!-- ──────────── SECTION 5: EPILOGUE ──────────── -->
+<div class="sep"></div>
+<section class="wrap" id="sec-conclusion">
+  <p class="sec-label">Chapter 05 &middot; 結語</p>
+  <h2 class="sec-title">浪潮之下，價值何在</h2>
+  <p class="sec-desc">故事停在 48 小時的十字路口，沒有標準答案。但兩位顧問殊途同歸的判斷，指出了這個案例真正的考點。</p>
+
+  <div class="ep-quote io-fade">
+    <p>「問題從來不是<em>要不要用 AI</em>，而是——<br>你的哪一部分價值將被商品化，哪一部分因人而貴。」</p>
+  </div>
+
+  <div class="ep-grid">
+    <div class="ep-item io-fade">
+      <div class="ep-num">01</div>
+      <h4>交集：不動，才是最大的風險</h4>
+      <p>嚴國瑞主張 Go Big，陳柏諭主張選擇性借力，立場看似對立，前提卻一致：AI 對知識產業的衝擊不可逆。差別只在改變的速度與深度，而非改變與否——保守參與，本身就是一種高風險策略。</p>
+    </div>
+    <div class="ep-item io-fade">
+      <div class="ep-num">02</div>
+      <h4>代價：轉型是持續承諾，不是一次性投資</h4>
+      <p>千萬基建只是入場券，真正的成本是每月燃燒的算力費用、半年招不到的稀缺人才，以及資安與治理的制度化。付得起多少、承受得了多少，必須排在企圖心之前想清楚。</p>
+    </div>
+    <div class="ep-item io-fade">
+      <div class="ep-num">03</div>
+      <h4>界線：客戶買的是判斷與責任，不是產出</h4>
+      <p>當生成趨近免費，信任變得昂貴。Human in the Loop 不是保守，而是把「責任承擔」變成最難複製的護城河——AI 越強，這條人機之間的界線越清晰，也越值錢。</p>
+    </div>
+  </div>
+
+  <div class="ep-close io-fade">
+    <p>回到那面白板：「SaaS 平台」與「顧問服務制」之間，或許還有第三條路——<b>用 AI 重造效率，用判斷守住身價。</b><br>48 小時後的董事會沒有標準答案；這一題，留給每一位正站在浪潮中的經營者。</p>
+  </div>
+</section>
+
 <!-- ──────────── FOOTER ──────────── -->
 <footer>
   <p>案例來源：《哈佛商業評論》台灣版 &middot; 2026年5月號 &middot; 競爭策略</p>
@@ -1650,7 +1699,7 @@ function goto(id) {
 }
 
 /* ─── Scroll-aware nav highlight ─── */
-const secIds = ['sec-summary', 'sec-char', 'sec-timeline', 'sec-events', 'sec-decision', 'sec-slido', 'sec-expert'];
+const secIds = ['sec-summary', 'sec-char', 'sec-timeline', 'sec-events', 'sec-decision', 'sec-slido', 'sec-expert', 'sec-conclusion'];
 const navBtns = document.querySelectorAll('.sn');
 window.addEventListener('scroll', () => {
   let cur = '';
