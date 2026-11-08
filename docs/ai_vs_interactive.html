@@ -313,6 +313,62 @@ button{cursor:pointer;font-family:var(--fb);border:none;background:none}
 .cr .ilv{color:var(--crisis)}.tr .ilv{color:var(--turning)}
 .ch .ilv{color:var(--challenge)}.di .ilv{color:var(--dilemma)}
 
+/* ── KEYWORD WALL ────────────────────────────── */
+.kw-legend{
+  display:flex;flex-wrap:wrap;gap:.5rem 1.4rem;margin-bottom:1.5rem;
+  font-size:.76rem;color:var(--ink2);
+}
+.kw-grid{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(235px,1fr));
+  gap:1rem;
+}
+.kw-card{
+  background:var(--surf);border:1px solid var(--bdr);border-radius:var(--r);
+  border-top:3px solid transparent;padding:1.35rem 1.3rem 1.2rem;
+  transition:transform .2s,box-shadow .2s;
+}
+.kw-card:hover{transform:translateY(-3px);box-shadow:var(--sh-md)}
+.kw-card.cr{border-top-color:var(--crisis)}
+.kw-card.tr{border-top-color:var(--turning)}
+.kw-card.ch{border-top-color:var(--challenge)}
+.kw-card.di{border-top-color:var(--dilemma)}
+.kw-num{
+  font-size:.66rem;font-weight:700;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--ink3);
+}
+.kw-quote{
+  font-family:var(--fd);font-size:1.28rem;line-height:1.38;
+  letter-spacing:-.015em;margin:.55rem 0 .5rem;
+}
+.kw-src{font-size:.72rem;font-weight:700;letter-spacing:.04em;margin-bottom:.45rem}
+.kw-card.cr .kw-src{color:var(--crisis)}
+.kw-card.tr .kw-src{color:var(--turning)}
+.kw-card.ch .kw-src{color:var(--challenge)}
+.kw-card.di .kw-src{color:var(--dilemma)}
+.kw-note{font-size:.78rem;color:var(--ink2);line-height:1.65}
+@media(max-width:640px){.kw-quote{font-size:1.12rem}}
+
+.kw-fork{
+  grid-column:1/-1;border:1px solid var(--navy);
+  background:var(--navy);color:#fff;
+  display:flex;flex-direction:column;align-items:center;
+  text-align:center;gap:0;padding:2rem 2.4rem;
+}
+.kw-fork:hover{transform:none;box-shadow:var(--sh-lg)}
+.kw-fork .kw-num{color:rgba(255,255,255,.55)}
+.kw-fork .kw-quote{font-size:clamp(1.2rem,2.4vw,1.65rem);margin-bottom:.4rem}
+.kw-fork .kw-note{color:rgba(255,255,255,.72);max-width:680px}
+.kf-paths{display:flex;gap:.7rem;flex-wrap:wrap;justify-content:center;margin-top:1.4rem}
+.kf-path{
+  display:flex;flex-direction:column;align-items:center;
+  min-width:170px;padding:.8rem 1.2rem;border-radius:var(--r);
+  border:1px solid rgba(255,255,255,.3);color:#fff;
+  font-size:.88rem;font-weight:600;transition:all .18s;text-align:center;
+}
+.kf-path span{font-size:.64rem;font-weight:700;letter-spacing:.1em;opacity:.65;text-transform:uppercase}
+.kf-path.p1:hover{background:var(--amber);border-color:var(--amber)}
+.kf-path.p2:hover{background:var(--teal);border-color:var(--teal)}
+
 /* ── EXPERT PANELS ───────────────────────────── */
 .exp-sel{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.8rem}
 @media(max-width:640px){.exp-sel{grid-template-columns:1fr}}
@@ -602,6 +658,7 @@ footer{
   <button class="sn" onclick="goto('sec-char')">人物關係</button>
   <button class="sn" onclick="goto('sec-timeline')">故事時間軸</button>
   <button class="sn" onclick="goto('sec-events')">故事四象限</button>
+  <button class="sn" onclick="goto('sec-keywords')">關鍵標語</button>
   <button class="sn" onclick="goto('sec-decision')">路徑決策</button>
   <button class="sn" onclick="goto('sec-slido')">Slido 互動</button>
   <button class="sn" onclick="goto('sec-expert')">顧問分鏡</button>
@@ -1285,6 +1342,84 @@ footer{
 
 <div class="sep"></div>
 
+<!-- ──────────── SECTION 2.5: KEYWORD WALL ──────────── -->
+<section class="wrap" id="sec-keywords">
+  <p class="sec-label">Chapter 02.5 · 案例關鍵字</p>
+  <h2 class="sec-title">九大關鍵標語</h2>
+  <p class="sec-desc">從哈佛商業評論案例中提煉的九句關鍵話語，串起 A Plus 從危機到抉擇的完整弧線——也正是下一章兩條路徑的伏筆。</p>
+
+  <div class="kw-legend io-fade">
+    <span class="leg-i"><span class="leg-dot" style="background:var(--crisis)"></span>危機訊號</span>
+    <span class="leg-i"><span class="leg-dot" style="background:var(--turning)"></span>轉機資產</span>
+    <span class="leg-i"><span class="leg-dot" style="background:var(--challenge)"></span>轉型代價</span>
+    <span class="leg-i"><span class="leg-dot" style="background:var(--dilemma)"></span>價值兩難</span>
+  </div>
+
+  <div class="kw-grid">
+    <div class="kw-card cr io-fade">
+      <div class="kw-num">01 · 危機</div>
+      <div class="kw-quote">「AI 正在取代<br>你們的基礎工作」</div>
+      <div class="kw-src">雅斯比 · 要求降價 20%</div>
+      <div class="kw-note">最大客戶一句話，否定代理商的價值底線。</div>
+    </div>
+    <div class="kw-card cr io-fade">
+      <div class="kw-num">02 · 危機</div>
+      <div class="kw-quote">「去中介化浪潮」</div>
+      <div class="kw-src">O 平台 · 月費 99 美元</div>
+      <div class="kw-note">占 30% 營收的中小客戶，一個月流失 3 家。</div>
+    </div>
+    <div class="kw-card cr io-fade">
+      <div class="kw-num">03 · 危機</div>
+      <div class="kw-quote">「無限期賠償<br>責任附約」</div>
+      <div class="kw-src">環球金控 · 致命條款</div>
+      <div class="kw-note">AI 幻覺或法規漏字一次，懲罰性賠償無上限。</div>
+    </div>
+    <div class="kw-card tr io-fade">
+      <div class="kw-num">04 · 轉機</div>
+      <div class="kw-quote">「數據是 AI<br>時代的原油」</div>
+      <div class="kw-src">蘇霏 · 五年數據資產</div>
+      <div class="kw-note">獨家數據煉成專屬模型，估值翻三倍的底氣。</div>
+    </div>
+    <div class="kw-card tr io-fade">
+      <div class="kw-num">05 · 轉機</div>
+      <div class="kw-quote">「隱性知識智能化」</div>
+      <div class="kw-src">文件向量化 · 知識圖譜化</div>
+      <div class="kw-note">把資深企畫的判斷邏輯，編碼成無法複製的私有資產。</div>
+    </div>
+    <div class="kw-card tr io-fade">
+      <div class="kw-num">06 · 轉機</div>
+      <div class="kw-quote">「Vibe Coding」</div>
+      <div class="kw-src">自然語言開發 · 存有爭議</div>
+      <div class="kw-note">非工程師也能寫程式，通往 SaaS 平台的門檻大幅下降。</div>
+    </div>
+    <div class="kw-card ch io-fade">
+      <div class="kw-num">07 · 挑戰</div>
+      <div class="kw-quote">「千萬建置與<br>API 無底洞」</div>
+      <div class="kw-src">CTO 估算 · 每月燒 50 萬起</div>
+      <div class="kw-note">固定薪資被換成不可預測的雲端算力費用。</div>
+    </div>
+    <div class="kw-card di io-fade">
+      <div class="kw-num">08 · 兩難</div>
+      <div class="kw-quote">「客戶買的<br>是我們的腦袋」</div>
+      <div class="kw-src">周雪莉 · 反對全面 AI 化</div>
+      <div class="kw-note">交給機器，就只剩商品化的價格競爭。</div>
+    </div>
+    <div class="kw-card kw-fork io-fade">
+      <div>
+        <div class="kw-num">09 · 抉擇</div>
+        <div class="kw-quote">「SaaS 轉型 &times; AI 導入：<br>是取代，還是衝突？」</div>
+        <div class="kw-note">全面平台化可能取代自家顧問價值；客戶數據餵養 AI 又與資安合規正面衝突——48 小時後的董事會必須給出答案。</div>
+      </div>
+      <div class="kf-paths">
+        <button class="kf-path p1" onclick="goto('sec-decision')"><span>路徑一</span>全面擁抱 AI &rarr;</button>
+        <button class="kf-path p2" onclick="goto('sec-decision')"><span>路徑二</span>借力使力 &rarr;</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="sep"></div>
+
 <!-- ──────────── SECTION 3: DECISION ──────────── -->
 <section class="wrap" id="sec-decision">
   <p class="sec-label">Chapter 03</p>
@@ -1699,7 +1834,7 @@ function goto(id) {
 }
 
 /* ─── Scroll-aware nav highlight ─── */
-const secIds = ['sec-summary', 'sec-char', 'sec-timeline', 'sec-events', 'sec-decision', 'sec-slido', 'sec-expert', 'sec-conclusion'];
+const secIds = ['sec-summary', 'sec-char', 'sec-timeline', 'sec-events', 'sec-keywords', 'sec-decision', 'sec-slido', 'sec-expert', 'sec-conclusion'];
 const navBtns = document.querySelectorAll('.sn');
 window.addEventListener('scroll', () => {
   let cur = '';
