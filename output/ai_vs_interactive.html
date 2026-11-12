@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="zh-TW">
 <head>
 <meta charset="UTF-8">
@@ -404,6 +404,100 @@ button{cursor:pointer;font-family:var(--fb);border:none;background:none}
 .li-pos .li-dot{background:var(--turning)}
 .li-neg .li-dot{background:var(--crisis)}
 
+/* ── ZOOM CONTROLS ──────────────────────────── */
+.map-wrap{position:relative}
+.map-scroll{overflow:auto;position:relative;border-radius:var(--rl) var(--rl) 0 0}
+.map-scroll svg{display:block;transition:width .25s, height .25s}
+.zoom-bar{
+  position:absolute;top:12px;right:12px;z-index:20;
+  display:flex;align-items:center;gap:4px;
+  background:rgba(250,248,244,.92);backdrop-filter:blur(10px);
+  border:1px solid var(--bdr);border-radius:var(--r);
+  padding:4px 8px;box-shadow:var(--sh-sm);
+}
+.zbtn{
+  width:28px;height:28px;border-radius:6px;
+  border:1px solid var(--bdr);background:var(--surf);
+  color:var(--ink);font-size:1rem;font-weight:600;
+  display:flex;align-items:center;justify-content:center;
+  transition:all .15s;line-height:1;
+}
+.zbtn:hover{background:var(--navy);color:#fff;border-color:var(--navy)}
+.zlabel{font-size:.7rem;font-weight:600;color:var(--ink2);min-width:38px;text-align:center}
+
+/* ── TIMELINE ────────────────────────────────── */
+.tl-outer{position:relative;padding-left:130px}
+.tl-outer::before{
+  content:'';position:absolute;
+  left:128px;top:20px;bottom:20px;width:2px;
+  background:linear-gradient(to bottom,transparent,var(--bdr) 6%,var(--bdr) 94%,transparent);
+}
+.tl-item{
+  display:grid;grid-template-columns:120px 2px 1fr;
+  gap:0 14px;margin-bottom:1.8rem;position:relative;
+  margin-left:-130px;
+}
+.tl-item:last-child{margin-bottom:0}
+.tl-time{padding-top:.85rem;text-align:right}
+.tl-day{font-size:.66rem;font-weight:700;letter-spacing:.08em;color:var(--ink3);text-transform:uppercase;display:block}
+.tl-clock{font-family:var(--fd);font-size:1.15rem;color:var(--ink);line-height:1.15;display:block}
+.tl-spine{display:flex;flex-direction:column;align-items:center;padding-top:.9rem}
+.tl-dot{
+  width:14px;height:14px;border-radius:50%;
+  border:2.5px solid var(--surf);flex-shrink:0;
+  position:relative;z-index:2;box-shadow:0 0 0 2px var(--bdr);
+}
+.tl-card{
+  background:var(--surf);border:1px solid var(--bdr);border-radius:var(--r);
+  padding:1.1rem 1.3rem;cursor:pointer;
+  transition:transform .2s,box-shadow .2s,border-color .2s;
+  border-left:3px solid transparent;
+}
+.tl-card:hover{transform:translateX(4px);box-shadow:var(--sh-md)}
+.tl-card.cr{border-left-color:var(--crisis)}
+.tl-card.am{border-left-color:var(--amber)}
+.tl-card.nv{border-left-color:var(--navy)}
+.tl-card.di{border-left-color:var(--dilemma)}
+.tl-card-top{display:flex;align-items:flex-start;gap:.65rem;margin-bottom:.55rem}
+.tl-badge{
+  flex-shrink:0;padding:.16rem .55rem;border-radius:100px;
+  font-size:.63rem;font-weight:700;white-space:nowrap;margin-top:.18rem;
+}
+.tl-badge.cr{background:var(--crbg);color:var(--crisis)}
+.tl-badge.am{background:rgba(192,120,38,.1);color:var(--amber)}
+.tl-badge.nv{background:rgba(26,48,80,.08);color:var(--navy)}
+.tl-badge.di{background:var(--dibg);color:var(--dilemma)}
+.tl-title{font-family:var(--fd);font-size:1rem;line-height:1.28}
+.tl-desc{font-size:.83rem;color:var(--ink2);line-height:1.72}
+.tl-actors{
+  display:flex;flex-wrap:wrap;gap:.3rem;
+  margin-top:.75rem;padding-top:.65rem;border-top:1px solid var(--bdr);
+}
+.tl-actor{
+  display:flex;align-items:center;gap:.3rem;
+  padding:.15rem .5rem;border-radius:100px;
+  background:var(--bg2);font-size:.7rem;color:var(--ink2);
+  border:1px solid var(--bdr);
+}
+.tl-actor-dot{width:5px;height:5px;border-radius:50%;flex-shrink:0}
+.tl-detail{
+  display:none;font-size:.82rem;color:var(--ink2);line-height:1.72;
+  margin-top:.8rem;padding-top:.8rem;border-top:1px dashed var(--bdr);
+}
+.tl-card.open .tl-detail{display:block;animation:fadeUp .25s ease}
+.tl-hint{
+  font-size:.68rem;color:var(--ink3);margin-top:.55rem;
+  text-align:right;transition:color .15s;
+}
+.tl-card.open .tl-hint{color:var(--amber)}
+@media(max-width:640px){
+  .tl-outer{padding-left:0}
+  .tl-outer::before{display:none}
+  .tl-item{grid-template-columns:1fr;margin-left:0}
+  .tl-time{padding-top:0;text-align:left;margin-bottom:.4rem}
+  .tl-spine{display:none}
+}
+
 /* ── FOOTER ──────────────────────────────────── */
 footer{
   background:var(--bg2);border-top:1px solid var(--bdr);
@@ -440,6 +534,7 @@ footer{
 <!-- ──────────── STICKY NAV ──────────── -->
 <nav class="snav">
   <button class="sn" onclick="goto('sec-char')">人物關係</button>
+  <button class="sn" onclick="goto('sec-timeline')">故事時間軸</button>
   <button class="sn" onclick="goto('sec-events')">故事四象限</button>
   <button class="sn" onclick="goto('sec-expert')">顧問分鏡</button>
   <button class="sn" onclick="goto('sec-decision')">路徑決策</button>
@@ -479,9 +574,17 @@ footer{
 
   <div class="charmap-grid">
     <div class="map-wrap io-fade">
+      <!-- zoom controls -->
+      <div class="map-scroll" id="map-scroll">
+        <div class="zoom-bar">
+          <button class="zbtn" onclick="zoom(-1)" title="縮小">&#8722;</button>
+          <span class="zlabel" id="zlabel">100%</span>
+          <button class="zbtn" onclick="zoom(1)" title="放大">&#43;</button>
+          <button class="zbtn" onclick="zoom(0)" title="重置" style="font-size:.65rem;width:36px;letter-spacing:-.02em">重置</button>
+        </div>
       <!-- ── SVG DIAGRAM ── -->
-      <svg id="charmap" viewBox="0 0 820 500" xmlns="http://www.w3.org/2000/svg"
-           style="background:#faf8f4">
+      <svg id="charmap" viewBox="0 0 820 500" width="820" height="500" xmlns="http://www.w3.org/2000/svg"
+           style="background:#faf8f4;min-width:100%;display:block">
         <defs>
           <!-- Arrowhead markers -->
           <marker id="a-red"    markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,1 L0,7 L7,4 z" fill="#A83224"/></marker>
@@ -746,6 +849,7 @@ footer{
                 fill="#9A9590">競爭對手</text>
         </g>
       </svg>
+      </div><!-- /.map-scroll -->
 
       <!-- legend bar -->
       <div class="map-legend">
@@ -774,6 +878,179 @@ footer{
       </div>
     </div>
   </div>
+</section>
+
+<div class="sep"></div>
+
+<!-- ──────────── SECTION 1.5: STORY TIMELINE ──────────── -->
+<section class="wrap" id="sec-timeline">
+  <p class="sec-label">Chapter 01.5</p>
+  <h2 class="sec-title">故事時間軸</h2>
+  <p class="sec-desc">從清晨的一封郵件，到週五夜間的十字路口——七個關鍵時刻，構成這場 48 小時決策困局。點擊事件卡片展開完整導讀。</p>
+
+  <div class="tl-outer">
+
+    <!-- Event 1 -->
+    <div class="tl-item io-fade">
+      <div class="tl-time">
+        <span class="tl-day">週一</span>
+        <span class="tl-clock">06:00</span>
+      </div>
+      <div class="tl-spine"><div class="tl-dot" style="background:var(--crisis)"></div></div>
+      <div class="tl-card cr" onclick="this.classList.toggle('open')">
+        <div class="tl-card-top">
+          <span class="tl-badge cr">危機</span>
+          <div class="tl-title">雅斯比降價震撼彈</div>
+        </div>
+        <div class="tl-desc">王愛玫清晨查看手機，發現核心客戶雅斯比要求明年合約服務費調降 20%。一封郵件，引爆整個故事。</div>
+        <div class="tl-detail">「如今，企業內部導入生成式 AI，就能在幾秒內完成基礎媒體操作、文案與視覺 A/B 測試，代理商的專業顧問還有什麼價值？」這不只是一封降價郵件，而是整個知識價值產業生存危機的第一槍——也是 A Plus 這場 48 小時決策倒數的起點。</div>
+        <div class="tl-actors">
+          <span class="tl-actor"><span class="tl-actor-dot" style="background:#C07826"></span>王愛玫</span>
+          <span class="tl-actor"><span class="tl-actor-dot" style="background:#C07826;opacity:.75"></span>雅斯比</span>
+        </div>
+        <div class="tl-hint">點擊展開 / 收合 ▾</div>
+      </div>
+    </div>
+
+    <!-- Event 2 -->
+    <div class="tl-item io-fade">
+      <div class="tl-time">
+        <span class="tl-day">週一</span>
+        <span class="tl-clock">10:00</span>
+      </div>
+      <div class="tl-spine"><div class="tl-dot" style="background:var(--navy)"></div></div>
+      <div class="tl-card nv" onclick="this.classList.toggle('open')">
+        <div class="tl-card-top">
+          <span class="tl-badge nv">內部衝突</span>
+          <div class="tl-title">核心主管會議 — 路線之爭全面引爆</div>
+        </div>
+        <div class="tl-desc">王愛玫在全體業務會議公開降價訊息。蘇霏主張全面 AI 化，周雪莉力守顧問服務，李廉安以技術現實澆冷水，三方路線激烈交鋒。</div>
+        <div class="tl-detail">「我們必須賣技術與效率，不能再當傳統的人力仲介商了！」——蘇霏 / 「蘇霏，你這是在帶領公司跳入商品化的陷阱！」——周雪莉 / 「寫出一個能用的腳本，跟建立一個企業級可商用 MarTech 平台，完全是兩碼子事。光是第一年基礎建設就要 800–1,000 萬元。」——李廉安。王愛玫宣布先散會，一個答案也沒有。</div>
+        <div class="tl-actors">
+          <span class="tl-actor"><span class="tl-actor-dot" style="background:#C07826"></span>王愛玫</span>
+          <span class="tl-actor"><span class="tl-actor-dot" style="background:#1A3050"></span>蘇霏</span>
+          <span class="tl-actor"><span class="tl-actor-dot" style="background:#1A3050"></span>周雪莉</span>
+          <span class="tl-actor"><span class="tl-actor-dot" style="background:#1A3050"></span>李廉安</span>
+        </div>
+        <div class="tl-hint">點擊展開 / 收合 ▾</div>
+      </div>
+    </div>
+
+    <!-- Event 3 -->
+    <div class="tl-item io-fade">
+      <div class="tl-time">
+        <span class="tl-day">週一</span>
+        <span class="tl-clock">下午</span>
+      </div>
+      <div class="tl-spine"><div class="tl-dot" style="background:var(--amber)"></div></div>
+      <div class="tl-card am" onclick="this.classList.toggle('open')">
+        <div class="tl-card-top">
+          <span class="tl-badge am">資本壓力</span>
+          <div class="tl-title">林本恩：「給我一個估值翻倍的計畫」</div>
+        </div>
+        <div class="tl-desc">散會後，最大股東林本恩傳訊：「下週董事會，請給我一個能讓估值翻倍的 AI 轉型計畫。」資本壓力正式登場。</div>
+        <div class="tl-detail">林本恩代表創鼎資本（Apex Capital），一直渴望將 A Plus 包裝成高估值 SaaS 科技公司賣出。在資本市場眼中，依賴人力的代理商估值頂多本益比 8–12 倍；SaaS 平台則可達 30 倍以上。這一則訊息讓王愛玫的壓力在同一天疊加到最高點。</div>
+        <div class="tl-actors">
+          <span class="tl-actor"><span class="tl-actor-dot" style="background:#A83224"></span>林本恩</span>
+        </div>
+        <div class="tl-hint">點擊展開 / 收合 ▾</div>
+      </div>
+    </div>
+
+    <!-- Event 4 -->
+    <div class="tl-item io-fade">
+      <div class="tl-time">
+        <span class="tl-day">週三</span>
+        <span class="tl-clock">下午</span>
+      </div>
+      <div class="tl-spine"><div class="tl-dot" style="background:var(--amber)"></div></div>
+      <div class="tl-card am" onclick="this.classList.toggle('open')">
+        <div class="tl-card-top">
+          <span class="tl-badge am">資本施壓</span>
+          <div class="tl-title">私人俱樂部咖啡會 — MarTech 獨角獸估值報告</div>
+        </div>
+        <div class="tl-desc">林本恩在信義區私人俱樂部展示《2026 全球 MarTech 獨角獸估值報告》，並發出最後通牒：若無激進轉型計畫，將考慮啟動退場條款。</div>
+        <div class="tl-detail">「破壞式創新本來就是要敢於捨棄既有的利潤池，去擁抱下一個指數型成長的市場。O 平台現在搶走的只是你們 30% 的中小客戶，明年他們就會升級系統，去搶你們的大客戶了。」A Plus 擁有大量企業行銷數據，這是 AI 時代訓練模型的「原油」，轉型後估值可瞬間翻三倍，甚至有機會被國外大型軟體集團高價併購。</div>
+        <div class="tl-actors">
+          <span class="tl-actor"><span class="tl-actor-dot" style="background:#A83224"></span>林本恩</span>
+          <span class="tl-actor"><span class="tl-actor-dot" style="background:#C07826"></span>王愛玫</span>
+        </div>
+        <div class="tl-hint">點擊展開 / 收合 ▾</div>
+      </div>
+    </div>
+
+    <!-- Event 5 -->
+    <div class="tl-item io-fade">
+      <div class="tl-time">
+        <span class="tl-day">週四</span>
+        <span class="tl-clock">早上</span>
+      </div>
+      <div class="tl-spine"><div class="tl-dot" style="background:var(--crisis)"></div></div>
+      <div class="tl-card cr" onclick="this.classList.toggle('open')">
+        <div class="tl-card-top">
+          <span class="tl-badge cr">法律危機</span>
+          <div class="tl-title">環球金控：無限期賠償責任附約登場</div>
+        </div>
+        <div class="tl-desc">周雪莉帶來最大金融客戶環球金控的正式函文——《AI 生成內容查核與無限期賠償責任附約》，任何 AI 幻覺或法規漏字須承擔無上限懲罰性賠償。</div>
+        <div class="tl-detail">合約明文規定：若使用生成式 AI 輔助產出行銷素材，必須建立並留存完整的人類專家審核軌跡。若因 AI 幻覺遺漏金融商品法定警語（如基金風險提示、信用卡循環利率等）導致甲方遭主管機關裁罰，乙方需承擔無上限之懲罰性賠償。且嚴禁將甲方任何專案數據做為乙方自建自動化模型之訓練用途。王愛玫請周雪莉先與法務顧問聯繫。</div>
+        <div class="tl-actors">
+          <span class="tl-actor"><span class="tl-actor-dot" style="background:#1A3050"></span>周雪莉</span>
+          <span class="tl-actor"><span class="tl-actor-dot" style="background:#5E2A6E"></span>環球金控</span>
+          <span class="tl-actor"><span class="tl-actor-dot" style="background:#C07826"></span>王愛玫</span>
+        </div>
+        <div class="tl-hint">點擊展開 / 收合 ▾</div>
+      </div>
+    </div>
+
+    <!-- Event 6 -->
+    <div class="tl-item io-fade">
+      <div class="tl-time">
+        <span class="tl-day">週四</span>
+        <span class="tl-clock">上午</span>
+      </div>
+      <div class="tl-spine"><div class="tl-dot" style="background:var(--navy)"></div></div>
+      <div class="tl-card nv" onclick="this.classList.toggle('open')">
+        <div class="tl-card-top">
+          <span class="tl-badge nv">技術提案</span>
+          <div class="tl-title">蘇霏展示 Vibe Coding 敏捷開發藍圖</div>
+        </div>
+        <div class="tl-desc">蘇霏帶著平板進入辦公室，展示她連夜推演的 SaaS 平台藍圖。但預算試算揭示殘酷現實——一季 API 費用就要 200 萬元起跳，遇到雙 11 還翻倍。</div>
+        <div class="tl-detail">「若我們大膽導入 vibe coding 模式，不到一年就可以打通 Google 與 Meta API 的數據湖泊。」王愛玫看到試算表的 API 變動成本：服務 10 個客戶的 A/B 測試，一季就要燒掉 200 萬元。加上三種 AI 稀缺人才的薪資，全球科技巨頭正捧著現金搶奪，招募期可能長達半年。「妳等於是在要求公司，把固定可控的薪資全部轉換成昂貴且難找的人才與深不見底的雲端費用。」</div>
+        <div class="tl-actors">
+          <span class="tl-actor"><span class="tl-actor-dot" style="background:#1A3050"></span>蘇霏</span>
+          <span class="tl-actor"><span class="tl-actor-dot" style="background:#C07826"></span>王愛玫</span>
+        </div>
+        <div class="tl-hint">點擊展開 / 收合 ▾</div>
+      </div>
+    </div>
+
+    <!-- Event 7 -->
+    <div class="tl-item io-fade">
+      <div class="tl-time">
+        <span class="tl-day">週五</span>
+        <span class="tl-clock">19:00</span>
+      </div>
+      <div class="tl-spine"><div class="tl-dot" style="background:var(--dilemma)"></div></div>
+      <div class="tl-card di" onclick="this.classList.toggle('open')">
+        <div class="tl-card-top">
+          <span class="tl-badge di">決策困局</span>
+          <div class="tl-title">白板前的十字路口 — 48hr 倒數</div>
+        </div>
+        <div class="tl-desc">辦公室空無一人。王愛玫獨自在會議室白板前，一端寫「轉型 SaaS 平台」，另一端寫「深化顧問服務」。距離下週董事會不到 48 小時。</div>
+        <div class="tl-detail">在直線的一頭：全面擁抱 AI，轉型 SaaS 平台——迎合股東、擁抱中小客戶與高估值，但面臨千萬元研發錢坑與失去大客戶的風險。在直線的另一頭：借力使力，深化顧問價值——守住金融大客戶與穩定獲利，但面臨股東撤資威脅與中小客戶持續流失。「她望著窗外閃爍的霓虹燈，感覺很迷惘，她究竟該走向何方？」</div>
+        <div class="tl-actors">
+          <span class="tl-actor"><span class="tl-actor-dot" style="background:#C07826"></span>王愛玫</span>
+          <span class="tl-actor" style="border-color:rgba(94,42,110,.25);background:var(--dibg)"><span class="tl-actor-dot" style="background:var(--dilemma)"></span>董事會 &minus;48hr</span>
+        </div>
+        <div class="tl-hint">點擊展開 / 收合 ▾</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="sep"></div>
+
 </section>
 
 <div class="sep"></div>
@@ -1265,7 +1542,7 @@ function goto(id) {
 }
 
 /* ─── Scroll-aware nav highlight ─── */
-const secIds = ['sec-char', 'sec-events', 'sec-expert', 'sec-decision'];
+const secIds = ['sec-char', 'sec-timeline', 'sec-events', 'sec-expert', 'sec-decision'];
 const navBtns = document.querySelectorAll('.sn');
 window.addEventListener('scroll', () => {
   let cur = '';
@@ -1303,6 +1580,51 @@ window.addEventListener('load', () => {
     setTimeout(() => { f.style.width = f.dataset.w + '%'; }, 600);
   });
 });
+
+/* ─── Zoom controls for character map ─── */
+(function () {
+  const BASE_W = 820, BASE_H = 500;
+  let level = 0; // index into steps
+  const steps = [0.75, 1.0, 1.3, 1.65, 2.1, 2.6];
+  const DEFAULT = 1; // index of 100%
+
+  function applyZoom() {
+    const svg = document.getElementById('charmap');
+    const scroll = document.getElementById('map-scroll');
+    const label = document.getElementById('zlabel');
+    if (!svg) return;
+    const s = steps[level];
+    const w = Math.round(BASE_W * s);
+    const h = Math.round(BASE_H * s);
+    svg.setAttribute('width', w);
+    svg.setAttribute('height', h);
+    scroll.style.maxHeight = Math.min(h + 20, 620) + 'px';
+    label.textContent = Math.round(s * 100) + '%';
+  }
+
+  window.zoom = function (dir) {
+    if (dir === 0) { level = DEFAULT; }
+    else { level = Math.max(0, Math.min(steps.length - 1, level + dir)); }
+    applyZoom();
+  };
+
+  // Init: fit to container width
+  window.addEventListener('load', () => {
+    const wrap = document.getElementById('map-scroll');
+    if (wrap) {
+      const cw = wrap.offsetWidth || 820;
+      // find the step that best fits
+      let best = 1;
+      for (let i = 0; i < steps.length; i++) {
+        if (BASE_W * steps[i] <= cw) best = i;
+      }
+      level = best;
+    } else {
+      level = DEFAULT;
+    }
+    applyZoom();
+  });
+})();
 </script>
 </body>
 </html>
